@@ -2,11 +2,8 @@ server {
   listen 80;
   server_name _;
 
-  client_max_body_size 0; # disable any limits to avoid HTTP 413 for large image uploads
-
-  # required to avoid HTTP 411: see Issue #1486 (https://github.com/dotcloud/docker/issues/1486)
-  chunked_transfer_encoding on;
-
+  client_max_body_size 0;                  # disable any limits to avoid HTTP 413 for large image uploads
+  chunked_transfer_encoding on;            # required to avoid HTTP 411: see Issue #1486 (https://github.com/dotcloud/docker/issues/1486)
   proxy_set_header Host      $http_host;   # required for docker client's sake
   proxy_set_header X-Real-IP $remote_addr; # pass on real client's IP
 
